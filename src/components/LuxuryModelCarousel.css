@@ -1,0 +1,108 @@
+/* LuxuryModelCarousel.css */
+.luxury-model-carousel {
+  position: relative;
+  padding: 40px 0;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.luxury-model-swiper {
+  width: 100%;
+  height: 500px;
+  perspective: 1200px;
+}
+
+.luxury-model-slide {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #000;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.swiper-slide-active .luxury-model-slide {
+  transform: translateZ(20px);
+}
+
+.model-content {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.swiper-slide-active .model-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 3D effect enhancements */
+.luxury-model-carousel::before,
+.luxury-model-carousel::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.2) 0%,
+    rgba(255, 215, 0, 0) 70%
+  );
+  z-index: -1;
+}
+
+.luxury-model-carousel::before {
+  top: -50px;
+  left: -50px;
+}
+
+.luxury-model-carousel::after {
+  bottom: -50px;
+  right: -50px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 41, 107, 0.2) 0%,
+    rgba(0, 41, 107, 0) 70%
+  );
+}
+
+/* Gold accents */
+.gold-accent {
+  position: absolute;
+  background: linear-gradient(135deg, #d4af37 0%, #f9f295 50%, #d4af37 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+  z-index: 10;
+}
+
+.gold-accent-1 {
+  top: 10%;
+  left: 10%;
+  width: 15px;
+  height: 15px;
+}
+
+.gold-accent-2 {
+  bottom: 15%;
+  right: 12%;
+  width: 10px;
+  height: 10px;
+}
+
+/* Luxury badge */
+.luxury-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #d4af37 0%, #f9f295 50%, #d4af37 100%);
+  color: #000;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+}
