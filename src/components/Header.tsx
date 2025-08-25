@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const menuItems = [
     { path: "/", label: "Home" },
@@ -15,13 +16,23 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 animate-fade-down">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 animate-fade-down ${
+        isHome
+          ? "bg-transparent border-transparent"
+          : "bg-white/95 dark:bg-gray-900/95 border-b border-gray-200 dark:border-gray-700 backdrop-blur-sm"
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo (Only Text, no icon) */}
           <Link
             to="/"
-            className="font-bold text-xl text-[#00296b] dark:text-blue-400 hover:scale-105 transition-transform duration-300"
+            className={`font-bold text-xl hover:scale-105 transition-transform duration-300 ${
+              isHome
+                ? "text-white drop-shadow"
+                : "text-[#00296b] dark:text-blue-400"
+            }`}
           >
             Focus{" "}
             <span className="text-gray-800 dark:text-white">Lifetime</span>
@@ -35,7 +46,11 @@ const Header: React.FC = () => {
                 to={item.path}
                 className={`text-sm font-medium transition-colors duration-200 ${
                   location.pathname === item.path
-                    ? "text-[#00296b] dark:text-blue-400"
+                    ? isHome
+                      ? "text-white"
+                      : "text-[#00296b] dark:text-blue-400"
+                    : isHome
+                    ? "text-white/90 hover:text-white"
                     : "text-gray-600 dark:text-gray-300 hover:text-[#00296b] dark:hover:text-blue-400"
                 }`}
               >
@@ -73,7 +88,11 @@ const Header: React.FC = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className={`block w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
                   location.pathname === item.path
-                    ? "text-[#00296b] dark:text-blue-400"
+                    ? isHome
+                      ? "text-white"
+                      : "text-[#00296b] dark:text-blue-400"
+                    : isHome
+                    ? "text-white/90 hover:text-white"
                     : "text-gray-600 dark:text-gray-300 hover:text-[#00296b] dark:hover:text-blue-400"
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
